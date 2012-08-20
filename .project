@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# browser Files
+FILES=(
+index.html
+scripts/main.js
+scripts/app.js 
+scripts/home/view.js 
+scripts/home/layout.partial
+scripts/editor/index.js 
+scripts/editor/layout.partial
+# scripts/editor/model.js 
+# scripts/editor/view.js 
+# scripts/editor/controller.js 
+# scripts/editor/mode.js 
+# scripts/editor/view.html 
+# scripts/console/index.js 
+# scripts/browser/tsdc/index.js 
+# scripts/browser/tsdc/model.js 
+# scripts/browser/tsdc/view.js 
+# scripts/browser/tsdc/controller.js 
+# scripts/system/api.js 
+# scripts/system/router.js 
+# scripts/system/server.js 
+# scripts/system/util.js 
+)
+
+# Open Files
+vim ${FILES[*]}
+

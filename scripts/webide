@@ -1,0 +1,34 @@
+#!/bin/bash
+
+APP="webide"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CMD="node $DIR/system/server.js"
+
+start()
+{
+  # nohup $CMD &>/dev/null &
+  # $CMD &>/dev/null 1>$APP.log 2>$APP.log
+  $CMD 
+}
+
+stop()
+{
+  PID=$(ps aux | grep "$CMD" | grep -v grep | awk '{print $2}')
+  kill -9 $PID
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart}"
+    exit 1
+esac
