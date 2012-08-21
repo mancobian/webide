@@ -1,3 +1,4 @@
-<script type="text/x-handlebars" data-template-name="editor-section">
-  <div id="editor-panel" class="tab-content">EDITOR</div>
-</script>
+<div ng-controller="EditorController">
+  <div ng-include="editorTemplate.url"></div>
+  <div id="editor" class="tab-content"></div>
+</div>

@@ -17,21 +17,9 @@
 </head>
 <body>
 
-  <h2>Todo</h2>
-  <div ng-controller="TodoCtrl">
-    <span>{{remaining()}} of {{todos.length}} remaining</span>
-    [ <a href="" ng-click="archive()">archive</a> ]
-    <ul class="unstyled">
-      <li ng-repeat="todo in todos">
-        <input type="checkbox" ng-model="todo.done">
-        <span class="done-{{todo.done}}">{{todo.text}}</span>
-      </li>
-    </ul>
-    <form ng-submit="addTodo()">
-      <input type="text" ng-model="todoText"  size="30"
-             placeholder="add new todo here">
-      <input class="btn-primary" type="submit" value="add">
-    </form>
+  <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v.0.0.1</span></h1> 
+  <div ng-controller="ApplicationController">
+    <div ng-include src="template.url"></div>
   </div>
 
   <script type="text/javascript" data-main="scripts/main.js" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.5/require.min.js"></script>

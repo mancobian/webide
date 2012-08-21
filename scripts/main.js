@@ -7,7 +7,7 @@ require.config({
     "angular": "http://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min",
     "text": 'libs/require/text',
     "now": 'nowjs/now',
-    "ace": '../node_modules/ace/build/src/ace',
+    "ace": '../node_modules/ace/lib/ace',
     "templates": '../templates'
   },
   shim: {
