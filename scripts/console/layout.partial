@@ -1,0 +1,3 @@
+<form ng-controller="ConsoleController" ng-submit="executeCommand()">
+  <input type='text' id='console-input' ng-model="console.text">
+</form>

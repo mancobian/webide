@@ -1,4 +1,3 @@
 <div ng-controller="EditorController">
-  <div ng-include="editorTemplate.url"></div>
   <div id="editor" class="tab-content"></div>
 </div>

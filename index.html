@@ -15,12 +15,11 @@
   <link href='node_modules/bootstrap/docs/assets/css/bootstrap.css' rel='stylesheet' type='text/css'>
   <link href="styles/style.css" rel="stylesheet" type="text/css" media="screen"></style>
 </head>
-<body>
+<body ng-controller="ApplicationController" on-key-down="onKeyDown">
 
-  <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v.0.0.1</span></h1> 
-  <div ng-controller="ApplicationController">
-    <div ng-include src="template.url"></div>
-  </div>
+  <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v.0.0.1</span> <span>{{ debug }}</span></h1> 
+  <div id="editor" ng-include src="editor.url"></div>
+  <div id="console" ng-include src="console.url"></div>
 
   <script type="text/javascript" data-main="scripts/main.js" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.5/require.min.js"></script>
   <script type="text/javascript" src="nowjs/now.js"></script>

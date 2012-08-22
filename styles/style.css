@@ -378,7 +378,7 @@ pre {
   z-index: 100;
   bottom: 0em;
   left: 0em;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 #console-input {
   position: fixed;

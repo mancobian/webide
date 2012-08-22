@@ -17,7 +17,7 @@ require.config({
   }
 });
 
-require([ 'angular', 'app' ],
+require([ 'angular', 'app/index' ],
 function( angular, app ) {
   app.initialize();
   angular.bootstrap(document, [ 'webide' ]);

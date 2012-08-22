@@ -4,11 +4,11 @@
 FILES=(
 index.html
 scripts/main.js
-scripts/app.js 
-scripts/home/view.js 
-scripts/home/layout.partial
+scripts/app/index.js 
 scripts/editor/index.js 
 scripts/editor/layout.partial
+scripts/console/index.js 
+scripts/console/layout.partial
 # scripts/editor/model.js 
 # scripts/editor/view.js 
 # scripts/editor/controller.js 
