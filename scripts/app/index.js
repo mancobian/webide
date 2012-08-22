@@ -18,11 +18,11 @@ var Module = angular.module('webide', []).
     });
 
     $scope.onKeyDown = function(key) {
-      $scope.debug = key;
+      $scope.debug = "Keycode: " + key;
 
       switch (key) {
         case 112: { // F1
-          $scope.debug = "F1";
+          $scope.debug = "Key: F1";
           $scope.toggleConsole();
           break;
         }
@@ -34,7 +34,7 @@ var Module = angular.module('webide', []).
 
     $scope.toggleConsole = function() {
       $scope.console.visible = !$scope.console.visible;
-      $scope.debug = $scope.console.visible
+      $scope.debug = "console.visible = " + $scope.console.visible
       $scope.console.visible ? $scope.console.el.show() : $scope.console.el.hide();
     };
   }]).

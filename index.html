@@ -17,7 +17,10 @@
 </head>
 <body ng-controller="ApplicationController" on-key-down="onKeyDown">
 
-  <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v.0.0.1</span> <span>{{ debug }}</span></h1> 
+  <div class="hero-unit">
+    <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v0.0.1</span> </h1> 
+    <div class="debug">DEBUG // {{ debug }}</div>
+  </div>
   <div id="editor" ng-include src="editor.url"></div>
   <div id="console" ng-include src="console.url"></div>
 

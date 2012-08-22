@@ -335,6 +335,11 @@ pre {
   background-color: transparent;
   color: white;
 }
+.debug {
+  background-color: black;
+  color: white;
+  padding: 0.5em;
+}
 .tab-close {
   color: #F00;
   margin-left: 0.5em;
@@ -378,7 +383,6 @@ pre {
   z-index: 100;
   bottom: 0em;
   left: 0em;
-  /* visibility: hidden; */
 }
 #console-input {
   position: fixed;
@@ -406,6 +410,6 @@ pre {
 }
 h1, h2, h3
 {
-  padding: 1em;
+  padding: 0em;
 }
 
