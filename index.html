@@ -17,12 +17,9 @@
 </head>
 <body ng-controller="ApplicationController" on-key-down="onKeyDown">
 
-  <div class="hero-unit">
-    <h1 style="font-variant:small-caps;">web<span style="color:#F00;">ide</span><span style="font-size:0.35em"> v0.0.1</span> </h1> 
-    <div class="debug">DEBUG // {{ debug }}</div>
-  </div>
-  <div id="editor" ng-include src="editor.url"></div>
-  <div id="console" ng-include src="console.url"></div>
+  <console></console>
+  <browser></browser>
+  <editor id="editor"></editor>
 
   <script type="text/javascript" data-main="scripts/main.js" src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.0.5/require.min.js"></script>
   <script type="text/javascript" src="nowjs/now.js"></script>

@@ -11,11 +11,28 @@ var create = function() {
   Editor.focus();
 };
 
+var EditorController = function($scope) {
+}; // end EditorController
+
+var EditorDirective = {
+  controller: EditorController,
+  restrict : 'E',
+  replace : false,
+  transclude : true,
+  templateUrl: 'scripts/editor/main.partial',
+  link: function(scope, element, attributes) {
+    create();
+  } // end link()
+}; // end EditorDirective
+
 var initialize = function(App) {
-  Module = App.
-    controller('EditorController', [ '$scope', function EditorController($scope) {
-    }] // end function()
-  ); // end controller()
+  Module = App
+    .controller('EditorController', [ '$scope', function($scope) {
+      EditorController($scope);
+    }]) // end controller()
+    .directive("editor", function() {
+      return EditorDirective;
+    });
 };
 
 return {

@@ -1,3 +1,0 @@
-<div ng-controller="EditorController">
-  <div id="editor" class="tab-content"></div>
-</div>

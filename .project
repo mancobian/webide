@@ -3,12 +3,20 @@
 # browser Files
 FILES=(
 index.html
+styles/style.css
 scripts/main.js
+scripts/system/api.js 
+scripts/system/server.js 
+scripts/system/util.js 
 scripts/app/index.js 
 scripts/editor/index.js 
-scripts/editor/layout.partial
+scripts/editor/main.partial
 scripts/console/index.js 
-scripts/console/layout.partial
+scripts/console/main.partial
+scripts/browser/index.js 
+scripts/browser/main.partial
+scripts/browser/nodes.partial
+scripts/browser/node.partial
 # scripts/editor/model.js 
 # scripts/editor/view.js 
 # scripts/editor/controller.js 

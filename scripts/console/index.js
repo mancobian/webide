@@ -20,8 +20,8 @@ var ConsoleController = function($scope) {
     $('#console-history').append(html);
 
     // Forces console history to scroll to the bottom without delay
-    $('#console-history').animate(
-      { scrollTop: $('#console-history')[0].scrollHeight }, 0
+    $('#console-form').animate(
+      { scrollTop: $('#console-form')[0].scrollHeight }, 0
     );
   }; // end function addConsoleHistoryItem()
 
@@ -30,7 +30,7 @@ var ConsoleController = function($scope) {
 
     switch (command) {
       case "clear": {
-        $('#console-history').html('');
+        $('#console-history').text('');
         break;
       }
       case "open": {
@@ -66,17 +66,43 @@ var ConsoleController = function($scope) {
 
     $scope.console.text = "";
   }; // end function executeCommand() 
-};
+
+}; // end ConsoleController
+
+var ConsoleDirective = {
+  controller: ConsoleController,
+  restrict : 'E',
+  replace : false,
+  transclude : true,
+  templateUrl: 'scripts/console/main.partial',
+  link: function(scope, element, attributes) {
+    hide();
+  } // end link()
+}; // end ConsoleDirective
+
+var show = function() {
+  $("console").show();
+  $("#console-input").focus();
+}
+
+var hide = function() {
+  $("console").hide();
+}
 
 var initialize = function(App) {
-  Module = App.
-    controller('ConsoleController', [ '$scope', function($scope) {
+  Module = App
+    .controller('ConsoleController', [ '$scope', function($scope) {
       ConsoleController($scope);
-    }]);
+    }])
+    .directive('console', function() {
+      return ConsoleDirective;
+    });
 };
 
 return {
   initialize: initialize,
+  show: show,
+  hide: hide,
   Module: Module
 };
 

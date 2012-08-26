@@ -1,0 +1,4 @@
+<ng-switch on="item.type">
+  <li ng-switch-when="directory" class="node {{ item.type }}">{{ item.name }}</li>
+  <li ng-switch-default class="node {{ item.type }}"><a href="{{ item.path }}">{{ item.name }}</a></li>
+</ng-switch>

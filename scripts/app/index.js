@@ -1,19 +1,24 @@
-define([ 'jquery', 'underscore', 'angular', 'editor/index', 'console/index' ], 
-function( $, _, angular, Editor, Console ) {
+define([ 'jquery', 'underscore', 'angular', 'editor/index', 'console/index', 'browser/index' ], 
+function( $, _, angular, Editor, Console, Browser ) {
 
 var initialize = function() {
   Editor.initialize(Module);
   Console.initialize(Module);
+  Browser.initialize(Module);
 };
 
 var ApplicationController = function($scope) {
-  $scope.editor = { url: 'scripts/editor/layout.partial' };
-  $scope.console = { url: 'scripts/console/layout.partial', visible: false, el: $("#console") };
+  $scope.editor = { url: 'scripts/editor/main.partial' };
+  $scope.console = { url: 'scripts/console/main.partial', visible: false, el: $("#console") };
+  $scope.browser = { url: 'scripts/browser/layout.partial', visible: false };
   $scope.debug = 0;
+  
+  $scope.$on('$viewContentLoaded', function(event) {
+  });
 
   $scope.$on('$includeContentLoaded', function(event) {
-    Editor.create();
-    $scope.console.el.hide();
+    // Editor.create();
+    // Console.hide();
   });
 
   $scope.onKeyDown = function(key) {
@@ -34,15 +39,15 @@ var ApplicationController = function($scope) {
   $scope.toggleConsole = function() {
     $scope.console.visible = !$scope.console.visible;
     $scope.debug = "console.visible = " + $scope.console.visible
-    $scope.console.visible ? $scope.console.el.show() : $scope.console.el.hide();
+    $scope.console.visible ? Console.show() : Console.hide();
   };
-};
+}; // end ApplicationController
 
-var Module = angular.module('webide', []).
-  controller('ApplicationController', [ '$scope', function($scope) {
+var Module = angular.module('webide', [])
+  .controller('ApplicationController', [ '$scope', function($scope) {
     ApplicationController($scope);
-  }]).
-  directive('onKeyDown', function() {
+  }])
+  .directive('onKeyDown', function() {
     return function(scope, element, attributes) {
       var eventHandler = scope.$eval(attributes.onKeyDown);
       element.bind("keydown", function(event) {
@@ -58,3 +63,4 @@ return {
 }
 
 }); // end define()
+

@@ -53,6 +53,106 @@ var initServer = function(server) {
       });
     });
   };
+
+  // @url http://stackoverflow.com/questions/11194287/convert-a-directory-structure-in-the-filesystem-to-json-with-node-js
+  /*
+  // info = {
+  //   path: <string>,
+  //   name: <string>,
+  //   type: directory | symlink | file,
+  //   children: { info[0] .. info [n] },
+  // }
+  */
+  function dirTree (dir) {
+    var stats = fs.lstatSync(dir),
+      info = {
+          path: dir,
+          name: path.basename(dir),
+          children: []
+      };
+
+    if (stats.isDirectory()) {
+        info.type = "directory";
+        var files = fs.readdirSync(dir);
+        files.sort();
+        for (var i = 0; i < files.length; ++i) {
+          var file = files[i];
+          var filepath = path.join(dir, file);
+          info.children.push(dirTree(filepath));
+        }
+    }
+    else if (stats.isSymbolicLink()) {
+      info.type = "symlink";
+    }
+    else {
+        // Assuming it's a file. In real life it could be a symlink or something else!
+        info.type = "file";
+    }
+    return info;
+  };
+
+  everyone.now.getFileList = function(dir, callback) {
+    if (dir === "" || dir === 'undefined') {
+      dir = ".";
+    }
+
+    var files = dirTree(dir);
+    // console.log (util.inspect(files, false, null));
+    callback(files);
+  };
+
+  // asynchronous tree walk
+  // root - root path
+  // fileCb - callback function (file, next) called for each file
+  // -- the callback must call next(falsey) to continue the iteration,
+  //    or next(truthy) to abort the iteration.
+  // doneCb - callback function (err) called when iteration is finished
+  // or an error occurs.
+  //
+  // example:
+  //
+  // forAllFiles('~/',
+  //     function (file, next) { sys.log(file); next(); },
+  //     function (err) { sys.log("done: " + err); });
+  // @url http://grammerjack.blogspot.com/2010/12/asynchronous-directory-tree-walk-in.html
+
+  function forAllFiles(root, fileCb, doneCb) {
+      fs.readdir(root, function processDir(err, files) {
+          if (err) {
+              fileCb(err);
+          } else {
+              if (files.length > 0) {
+                  var file = root + '/' + files.shift();
+                  fs.stat(file, function processStat(err, stat) {
+                      if (err) {
+                          doneCb(err);
+                      } else {
+                          if (stat.isFile()) {
+                              fileCb(file, function(err) {
+                                  if (err) {
+                                      doneCb(err);
+                                  } else {
+                                      processDir(false, files);
+                                  }
+                              });
+                          } else {
+                              forAllFiles(file, fileCb, function(err) {
+                                  if (err) {
+                                      doneCb(err);
+                                  } else {
+                                      processDir(false, files);
+                                  }
+                              });
+                          }
+                      }
+                  });
+              } else {
+                  doneCb(false);
+              }
+          }
+      });
+  };
+
 }; // end initServer()
 
 return {

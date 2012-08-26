@@ -1,0 +1,3 @@
+<div ng-controller="BrowserController">  
+  <nodes ng-model="tree"></nodes>
+</div>

@@ -1,0 +1,3 @@
+<ul>
+  <node ng-repeat="item in items"></node>
+</ul>
