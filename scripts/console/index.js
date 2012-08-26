@@ -8,6 +8,14 @@ var ConsoleController = function($scope) {
     text: "",
   };
 
+  $scope.scrollConsoleHistory = function() {
+    $('console').scrollTop( $('console')[0].scrollHeight );
+  };
+
+  $scope.clearConsoleHistory = function() {
+    $('#console-history').html('');
+  };
+
   $scope.addConsoleHistoryItem = function(command, item, classType) {
     var tag = "div";
     if (classType === "response") {
@@ -19,10 +27,8 @@ var ConsoleController = function($scope) {
     html += "<" + tag + " class='" + classType + " console-history-item'>" + item + "</" + tag + ">";
     $('#console-history').append(html);
 
-    // Forces console history to scroll to the bottom without delay
-    $('#console-form').animate(
-      { scrollTop: $('#console-form')[0].scrollHeight }, 0
-    );
+    // Scroll console history to bottom
+    $scope.scrollConsoleHistory();
   }; // end function addConsoleHistoryItem()
 
   $scope.executeCommand = function() {
@@ -30,7 +36,7 @@ var ConsoleController = function($scope) {
 
     switch (command) {
       case "clear": {
-        $('#console-history').text('');
+        $scope.clearConsoleHistory();
         break;
       }
       case "open": {
@@ -81,12 +87,12 @@ var ConsoleDirective = {
 }; // end ConsoleDirective
 
 var show = function() {
-  $("console").show();
+  $("console").css("visibility", "visible");
   $("#console-input").focus();
 }
 
 var hide = function() {
-  $("console").hide();
+  $("console").css("visibility", "hidden");
 }
 
 var initialize = function(App) {
