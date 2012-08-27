@@ -18,6 +18,7 @@ var BrowserController = function($scope) {
     var files = now.getFileList("scripts", function(files){
       $scope.setFiles(files.children);
     });
+    $scope.$emit("fileListLoaded");
   };
 
   $scope.getFileList();

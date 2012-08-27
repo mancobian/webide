@@ -420,28 +420,33 @@ editor {
   position: fixed;
   height: 100%; 
   width: 100%; 
-  /* 
-  overflow: auto;
-  */
-  left: 20em; 
   z-index: 10;
 }
 browser {
   position: fixed;
   overflow: auto;
   height: 100%;
-  width: 100%;
+  padding: 0.5em;
   top: 0;
   left: 0;
   color: white;
-}
-.node a {
-  background-color: white;
 }
 .directory {
   color: #A60000; 
 }
 .file {
   color: #FF7373;
+}
+a:link,
+a:visited {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  background-color: white;
+  color: red;
+  text-decoration: none;
 }
 

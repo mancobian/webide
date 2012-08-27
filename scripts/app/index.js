@@ -8,25 +8,23 @@ var initialize = function() {
 };
 
 var ApplicationController = function($scope) {
-  $scope.editor = { url: 'scripts/editor/main.partial' };
-  $scope.console = { url: 'scripts/console/main.partial', visible: false, el: $("#console") };
-  $scope.browser = { url: 'scripts/browser/layout.partial', visible: false };
+  $scope.editor = {  };
+  $scope.console = { visible: false, el: $("#console") };
+  $scope.browser = { visible: false };
   $scope.debug = 0;
   
   $scope.$on('$viewContentLoaded', function(event) {
   });
 
   $scope.$on('$includeContentLoaded', function(event) {
-    // Editor.create();
-    // Console.hide();
   });
 
   $scope.onKeyDown = function(key) {
-    $scope.debug = "Keycode: " + key;
+    // $scope.debug = "Keycode: " + key;
 
     switch (key) {
       case 112: { // F1
-        $scope.debug = "Key: F1";
+        // $scope.debug = "Key: F1";
         $scope.toggleConsole();
         break;
       }
@@ -38,15 +36,37 @@ var ApplicationController = function($scope) {
 
   $scope.toggleConsole = function() {
     $scope.console.visible = !$scope.console.visible;
-    $scope.debug = "console.visible = " + $scope.console.visible
+    // $scope.debug = "console.visible = " + $scope.console.visible
     $scope.console.visible ? Console.show() : Console.hide();
   };
+
+  $scope.adjustEditorSize = function() {
+    var width = $("browser").outerWidth(true);
+    Editor.adjustSize(4, width);    
+    $scope.debug = "Browser.width = " + width;
+  };
 }; // end ApplicationController
+
+var ApplicationDirective = {
+  controller: ApplicationController,
+  restrict : 'EC',
+  replace : false,
+  transclude : true,
+  // templateUrl: 'scripts/editor/main.partial',
+  link: function(scope, element, attributes) {
+  } // end link()
+}; // end EditorDirective
 
 var Module = angular.module('webide', [])
   .controller('ApplicationController', [ '$scope', function($scope) {
     ApplicationController($scope);
+    $scope.$on("fileListLoaded", function() {
+      $scope.adjustEditorSize();
+    });
   }])
+  .directive('application', function() {
+    return ApplicationDirective;
+  })
   .directive('onKeyDown', function() {
     return function(scope, element, attributes) {
       var eventHandler = scope.$eval(attributes.onKeyDown);
