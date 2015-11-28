@@ -54,6 +54,18 @@ var initServer = function(server) {
     });
   };
 
+  everyone.now.ls = function(path, callback) {
+    fs.readdir(path, function(err, files) {
+      callback(err, files);
+    });
+    var stats = fs.lstatSync(dir),
+      info = {
+          path: dir,
+          name: path.basename(dir),
+          children: []
+      };
+  }; // end ls()
+
   // @url http://stackoverflow.com/questions/11194287/convert-a-directory-structure-in-the-filesystem-to-json-with-node-js
   /*
   // info = {

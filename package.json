@@ -7,7 +7,8 @@
     "amdefine": "git+ssh://git@github.com:mancobian/amdefine.git#master",
     "ace": "git+ssh://git@github.com:mancobian/ace.git#master",
     "now": "git+ssh://git@github.com:mancobian/now.git#master",
-    "bootstrap": "git+ssh://git@github.com:mancobian/bootstrap.git#master"
+    "bootstrap": "git+ssh://git@github.com:mancobian/bootstrap.git#master",
+    "watch": "git+ssh://git@github.com:mancobian/watch.git#master"
   }, 
   "engines": {
     "node": "0.6.x",
